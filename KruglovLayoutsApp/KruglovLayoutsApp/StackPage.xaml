@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KruglovLayoutsApp.StackPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lbl" Text="Button!!11!!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="b1" Text="Start" BackgroundColor="#00F0FF" BorderColor="#000000" BorderWidth="7" FontSize="Large" Clicked="b1_Clicked" HorizontalOptions="Start"/>
+                <Button x:Name="b2" Text="0" BackgroundColor="#00F0FF" BorderColor="#000000" BorderWidth="7" FontSize="Large" Clicked="b2_Clicked" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
