@@ -5,16 +5,16 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame x:Name="rlight" CornerRadius="90" HorizontalOptions="Center" Padding="50" BackgroundColor="#615B5B">
-                <Label Text="К" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Label Text="RED" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
             </Frame>
             <StackLayout>
                 <Frame x:Name="ylight" CornerRadius="90" HorizontalOptions="Center" Padding="50" BackgroundColor="#615B5B">
-                    <Label Text="Ж" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="YELLOW" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 </Frame>
             </StackLayout>
             <StackLayout>
                 <Frame x:Name="glight" CornerRadius="90" HorizontalOptions="Center" Padding="50" BackgroundColor="#585353">
-                    <Label Text="З" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <Label Text="GREEN" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 </Frame>
             </StackLayout>
             <StackLayout Orientation="Horizontal" Margin="90,0,0,0">

@@ -7,7 +7,7 @@
         <Frame BackgroundColor="#DECB1C" 
                Padding="40" 
                CornerRadius="50">
-            <Label Text="I will hack pentagon. Someday..." 
+            <Label Text="..." 
                    HorizontalTextAlignment="Center" 
                    TextColor="White" 
                    FontSize="36" 

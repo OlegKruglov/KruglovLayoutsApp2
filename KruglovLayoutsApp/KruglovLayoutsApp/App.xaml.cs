@@ -11,7 +11,7 @@ namespace KruglovLayoutsApp
         {
             InitializeComponent();
 
-            MainPage = new Valgusfoor();
+            MainPage = new Valgusfoor2();
 
         }
 

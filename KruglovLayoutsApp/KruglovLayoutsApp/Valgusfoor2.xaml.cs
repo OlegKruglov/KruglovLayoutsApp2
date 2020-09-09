@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,74 +13,114 @@ namespace KruglovLayoutsApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Valgusfoor2 : ContentPage
     {
+        Label punane,kollane,roheline;
+        Frame pun, kol, roh;
+        Button sisse, valja;
+        
         public Valgusfoor2()
         {
             //InitializeComponent();
-            Label red = new Label()
+            Label punane = new Label()
             {
                 Text = "  Red  ",
                 TextColor = Color.Red,
                 FontSize = 18
             };
-            Frame rframe = new Frame()
+            Frame pun = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = red,
+                Content = punane,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Label yellow = new Label()
+            Label kollane = new Label()
             {
                 Text = "Yellow",
                 TextColor = Color.Yellow,
                 FontSize = 18
 
             };
-            Frame yframe = new Frame()
+            Frame kol = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = yellow,
+                Content = kollane,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Label green = new Label()
+            Label roheline = new Label()
             {
                 Text = "Green ",
                 TextColor = Color.Green,
                 FontSize = 18
 
             };
-            Frame gframe = new Frame()
+            Frame roh = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = green,
+                Content = roheline,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Button bt1 = new Button()
+            Button sisse = new Button()
             {
                 Text = "On",
                 HorizontalOptions = LayoutOptions.Start
             };
-            Button bt2 = new Button()
+            Button valja = new Button()
             {
-                Text = "off",
+                Text = "Off",
                 HorizontalOptions = LayoutOptions.End
             };
             StackLayout stackLayout2 = new StackLayout()
             {
-                Children = { bt1, bt2 }
+                Children = { sisse, valja }
             };
             StackLayout stackLayout = new StackLayout()
             {
-                Children = { rframe, yframe, gframe, stackLayout2 }
+                Children = { pun, kol, roh, stackLayout2 }
             };
             stackLayout2.Orientation = StackOrientation.Horizontal;
             stackLayout2.Margin = new Thickness(90, 0, 0, 0);
+            sisse.Clicked += Sisse_Clicked;
+            valja.Clicked += Valja_Clicked; 
             Content = stackLayout;
+
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += Tap_Tapped;
+            pun.GestureRecognizers.Add(tap);
+            kol.GestureRecognizers.Add(tap);
+            roh.GestureRecognizers.Add(tap);
+        }
+        private void Valja_Clicked(object sender, EventArgs e)
+        {
+            pun.BackgroundColor = Color.Gray;
+            kol.BackgroundColor = Color.Gray;
+            roh.BackgroundColor = Color.Gray;
+        }
+        private void Sisse_Clicked(object sender, EventArgs e)
+        {
+            pun.BackgroundColor = Color.Red;
+            kol.BackgroundColor = Color.Yellow;
+            roh.BackgroundColor = Color.Green;
+        }
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            Frame fr = sender as Frame;
+            if (fr == pun) 
+            {
+                punane.Text = "STOP";
+            }
+            if (fr == kol)
+            {
+                kollane.Text = "WAIT";
+            }
+            if (fr == roh)
+            {
+                roheline.Text = "GO";
+            }
         }
     }
 }
