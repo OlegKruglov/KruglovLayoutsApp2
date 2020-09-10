@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KruglovLayoutsApp.rgb">
+    <ContentPage.Content>
+        <StackLayout Padding="12,12,12,12">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Slider x:Name="Slider1" Minimum="0" Maximum="100" Value="15" ValueChanged="Slider1_ValueChanged" VerticalOptions="FillAndExpand"></Slider>
+                <Label x:Name="Red"></Label>
+                <Slider x:Name="Slider2" Minimum="0" Maximum="100" Value="15" ValueChanged="Slider2_ValueChanged" VerticalOptions="FillAndExpand"></Slider>
+                <Label x:Name="Green"></Label>
+                <Slider x:Name="Slider3" Minimum="0" Maximum="100" Value="15" ValueChanged="Slider3_ValueChanged" VerticalOptions="FillAndExpand"></Slider>
+                <Label x:Name="Blue"></Label>
+            </StackLayout>
+            <Frame x:Name="Frame1" BackgroundColor="Black" HorizontalOptions="CenterAndExpand" WidthRequest="500" HeightRequest="400"/>
+            <Editor x:Name="Editor1" Text="Some Text" VerticalOptions="FillAndExpand"></Editor>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
