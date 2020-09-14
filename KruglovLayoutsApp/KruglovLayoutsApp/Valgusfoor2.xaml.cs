@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,113 +12,192 @@ namespace KruglovLayoutsApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Valgusfoor2 : ContentPage
     {
-        Label punane,kollane,roheline;
-        Frame pun, kol, roh;
-        Button sisse, valja;
-        
+        Label yellow, red, green, aLab;
+        Frame rfr, yfr, gfr;
+        Button but1, but2;
+        Switch all;
         public Valgusfoor2()
         {
             //InitializeComponent();
-            Label punane = new Label()
+            red = new Label()
             {
                 Text = "  Red  ",
                 TextColor = Color.Red,
                 FontSize = 18
             };
-            Frame pun = new Frame()
+            rfr = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = punane,
+                Content = red,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Label kollane = new Label()
+            yellow = new Label()
             {
                 Text = "Yellow",
                 TextColor = Color.Yellow,
                 FontSize = 18
 
             };
-            Frame kol = new Frame()
+            yfr = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = kollane,
+                Content = yellow,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Label roheline = new Label()
+            green = new Label()
             {
                 Text = "Green ",
                 TextColor = Color.Green,
                 FontSize = 18
 
             };
-            Frame roh = new Frame()
+            gfr = new Frame()
             {
                 BackgroundColor = Color.Gray,
-                Content = roheline,
+                Content = green,
                 CornerRadius = 90,
                 Padding = 50,
                 HorizontalOptions = LayoutOptions.Center
             };
-            Button sisse = new Button()
+            but1 = new Button()
             {
                 Text = "On",
                 HorizontalOptions = LayoutOptions.Start
             };
-            Button valja = new Button()
+            but2 = new Button()
             {
-                Text = "Off",
+                Text = "off",
                 HorizontalOptions = LayoutOptions.End
+            };
+            aLab = new Label()
+            {
+                Text = "Все цвета",
+                TextColor = Color.Black,
+                FontSize = 18
+            };
+            all = new Switch()
+            {
+                IsToggled = false
+
+            };
+            StackLayout stackLayout3 = new StackLayout()
+            {
+                Children = { aLab }
             };
             StackLayout stackLayout2 = new StackLayout()
             {
-                Children = { sisse, valja }
+                Children = { but1, but2, all }
             };
             StackLayout stackLayout = new StackLayout()
             {
-                Children = { pun, kol, roh, stackLayout2 }
+                Children = { rfr, yfr, gfr, stackLayout2, stackLayout3 }
             };
             stackLayout2.Orientation = StackOrientation.Horizontal;
+            stackLayout3.Orientation = StackOrientation.Horizontal;
             stackLayout2.Margin = new Thickness(90, 0, 0, 0);
-            sisse.Clicked += Sisse_Clicked;
-            valja.Clicked += Valja_Clicked; 
+            stackLayout3.Margin = new Thickness(260, 0, 0, 0);
+
+            but1.Clicked += Bt1_Clicked;
+            but2.Clicked += Bt2_Clicked;
+
+            all.Toggled += All_Toggled;
+
             Content = stackLayout;
 
             var tap = new TapGestureRecognizer();
             tap.Tapped += Tap_Tapped;
-            pun.GestureRecognizers.Add(tap);
-            kol.GestureRecognizers.Add(tap);
-            roh.GestureRecognizers.Add(tap);
+            rfr.GestureRecognizers.Add(tap);
+            yfr.GestureRecognizers.Add(tap);
+            gfr.GestureRecognizers.Add(tap);
+
         }
-        private void Valja_Clicked(object sender, EventArgs e)
+
+        private void All_Toggled(object sender, ToggledEventArgs e)
         {
-            pun.BackgroundColor = Color.Gray;
-            kol.BackgroundColor = Color.Gray;
-            roh.BackgroundColor = Color.Gray;
+            if (all.IsToggled = true)
+            {
+                rfr.BackgroundColor = Color.Red;
+                yfr.BackgroundColor = Color.Yellow;
+                gfr.BackgroundColor = Color.Green;
+            }
+            else if (all.IsToggled = false)
+            {
+                rfr.BackgroundColor = Color.Gray;
+                yfr.BackgroundColor = Color.Gray;
+                gfr.BackgroundColor = Color.Gray;
+            }
         }
-        private void Sisse_Clicked(object sender, EventArgs e)
-        {
-            pun.BackgroundColor = Color.Red;
-            kol.BackgroundColor = Color.Yellow;
-            roh.BackgroundColor = Color.Green;
-        }
+
+        int clicked1 = 0;
         private void Tap_Tapped(object sender, EventArgs e)
         {
             Frame fr = sender as Frame;
-            if (fr == pun) 
+            if (fr == rfr)
             {
-                punane.Text = "STOP";
+                if (clicked1 == 0) { red.Text = "Traffic light is turned off"; }
+                else { red.Text = "Wait"; }
             }
-            if (fr == kol)
+            else if (fr == yfr)
             {
-                kollane.Text = "WAIT";
+                if (clicked1 == 0) { yellow.Text = "Traffic light is turned off"; }
+                else { yellow.Text = "Wait a bit more"; }
             }
-            if (fr == roh)
+            else if (fr == gfr)
             {
-                roheline.Text = "GO";
+                if (clicked1 == 0) { green.Text = "Traffic light is turned off"; }
+                else { green.Text = "Go"; }
+            }
+        }
+
+        private void Bt2_Clicked(object sender, EventArgs e)
+        {
+            green.TextColor = Color.Green;
+            yellow.TextColor = Color.Yellow;
+            red.TextColor = Color.Red;
+            red.Text = "  Red  ";
+            yellow.Text = "Yellow";
+            green.Text = "Green";
+            rfr.BackgroundColor = Color.Gray;
+            gfr.BackgroundColor = Color.Gray;
+            yfr.BackgroundColor = Color.Gray;
+            clicked1 = 0;
+        }
+
+        private void Bt1_Clicked(object sender, EventArgs e)
+        {
+            clicked1++;
+            var rand = new Random();
+            int num = rand.Next(1, 4);
+            if (num == 1)
+            {
+                red.TextColor = Color.White;
+                yellow.Text = "Yellow";
+                green.Text = "Green";
+                rfr.BackgroundColor = Color.Red;
+                yfr.BackgroundColor = Color.Gray;
+                gfr.BackgroundColor = Color.Gray;
+            }
+            else if (num == 2)
+            {
+                yellow.TextColor = Color.White;
+                red.Text = "  Red  ";
+                green.Text = "Green";
+                rfr.BackgroundColor = Color.Gray;
+                yfr.BackgroundColor = Color.Yellow;
+                gfr.BackgroundColor = Color.Gray;
+            }
+            else if (num == 3)
+            {
+                green.TextColor = Color.White;
+                red.Text = "  Red  ";
+                yellow.Text = "Yellow";
+                rfr.BackgroundColor = Color.Gray;
+                yfr.BackgroundColor = Color.Gray;
+                gfr.BackgroundColor = Color.Green;
             }
         }
     }
